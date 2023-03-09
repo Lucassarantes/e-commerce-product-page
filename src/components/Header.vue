@@ -38,7 +38,7 @@
                 ">
                 5
             </span>
-            <DropList v-show="teste === 1" />
+            <DropList v-show="this.dropDown" :item="this.item" />
             <img class="h-12" src="../assets/image-avatar.png" alt="Perfil">
         </div>
         <hr id="hr-principal" />
@@ -55,15 +55,20 @@ export default {
     },
     data() {
         return {
-            teste: 0
+            dropDown: false,
+            item: {
+                precoUnitario: 125.00,
+                nome: "Fall limited Edition Sneakers",
+                imagem: "../assets/image-product-1-thumbnail.jpg"
+            }
         }
     },
     methods: {
         abrirFecharLista() {
-            if(this.teste === 0) {
-                this.teste += 1;
+            if(this.dropDown === false) {
+                this.dropDown = true;
             } else {
-                this.teste -= 1;
+                this.dropDown = false;
             }
         }
     }
