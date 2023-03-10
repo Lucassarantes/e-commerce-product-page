@@ -41,7 +41,6 @@
             <DropList v-show="this.dropDown" :item="this.item" />
             <img class="h-12" src="../assets/image-avatar.png" alt="Perfil">
         </div>
-        <hr id="hr-principal" />
     </div>
 </template>
 
