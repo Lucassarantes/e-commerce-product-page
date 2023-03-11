@@ -35,7 +35,9 @@
                     text-center
                     mr-20
                     l-10
-                ">
+                "
+                v-show="this.totalItens > 0"    
+            >
                 5
             </span>
             <DropList v-show="this.dropDown" :item="this.item" />
@@ -55,6 +57,7 @@ export default {
     data() {
         return {
             dropDown: false,
+            totalItens: 0,
             item: {
                 precoUnitario: 125.00,
                 nome: "Fall limited Edition Sneakers",
