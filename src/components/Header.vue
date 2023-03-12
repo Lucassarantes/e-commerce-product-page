@@ -3,11 +3,11 @@
         <div class="flex ml-20 border-light-gray pb-10">
             <img class="w-36 h-9 self-start" src="../assets/logo.svg" alt="Logo">
             <nav class="flex justify-between ml-10 self-start gap-x-10">
-                <a href="http://">Collections</a>
-                <a href="http://">Men</a>
-                <a href="http://">Women</a>
-                <a href="http://">About</a>
-                <a href="http://">Contact</a>
+                <a href="http://" class="hover:border-b-2 hover:border-orange-500 pb-14">Collections</a>
+                <a href="http://" class="hover:border-b-2 hover:border-orange-500 pb-14">Men</a>
+                <a href="http://" class="hover:border-b-2 hover:border-orange-500 pb-14">Women</a>
+                <a href="http://" class="hover:border-b-2 hover:border-orange-500 pb-14">About</a>
+                <a href="http://" class="hover:border-b-2 hover:border-orange-500 pb-14">Contact</a>
             </nav>
         </div>
         <div class="flex justify-end space-bettwen mr-20 border-light-gray pb-10">
@@ -38,9 +38,9 @@
                 "
                 v-show="this.totalItens > 0"    
             >
-                5
+                {{ this.totalItens }}
             </span>
-            <DropList v-show="this.dropDown" :item="this.item" />
+            <DropList v-show="this.dropDown" :item="this.item" :totalItens="this.totalItens" />
             <img class="h-12" src="../assets/image-avatar.png" alt="Perfil">
         </div>
     </div>
@@ -54,15 +54,13 @@ export default {
     components: {
         DropList
     },
+    props: {
+        totalItens: Number,
+        item: Object
+    },
     data() {
         return {
             dropDown: false,
-            totalItens: 0,
-            item: {
-                precoUnitario: 125.00,
-                nome: "Fall limited Edition Sneakers",
-                imagem: "../assets/image-product-1-thumbnail.jpg"
-            }
         }
     },
     methods: {
@@ -72,7 +70,7 @@ export default {
             } else {
                 this.dropDown = false;
             }
-        }
+        },
     }
 };
 

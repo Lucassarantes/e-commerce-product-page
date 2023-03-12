@@ -1,4 +1,5 @@
 <template>
+    <Header :totalItens="this.totalProdutos" :item="this.item" @clear="clear()"/>
     <section class="grid grid-cols-2 absolute top-60">
         <div class="grid mb-10">
             <div class="w-full flex justify-center items-center mb-10">
@@ -23,10 +24,24 @@
                 <p class="text-gray-400 text-xs line-through text-left mb-10">$250.00</p>
                 <div class="flex">
                     <span class="flex bg-gray-100 w-fit rounded-lg mr-5 px-5">
-                        <button class="p-4 items-center flex rounded-lg">
+                        <button
+                            class="p-4 items-center flex rounded-lg"
+                            @click="this.removeQuantidade()"
+                        >
                             <img src="../assets/icon-minus.svg" alt="" />
                         </button>
-                        <span class="font-bold p-4">{{ this.quantidade ? 0 : 0 }}</span>
+                        <span 
+                            class="font-bold p-4"
+                            v-show="this.qtdProdutos > 0"
+                        >
+                            {{ this.qtdProdutos }}
+                        </span>
+                        <span 
+                            class="font-bold p-4"
+                            v-show="this.qtdProdutos === 0"
+                        >
+                            {{ this.qtdProdutos }}
+                        </span>
                         <button
                             class="p-4 items-center flex"
                             @click="this.addQuantidade()"
@@ -34,7 +49,13 @@
                             <img src="../assets/icon-plus.svg" alt="">
                         </button>
                     </span>
-                    <span class=" cursor-pointer bg-orange-500 text-white flex w-fit px-16 py-3 rounded-md font-semibold items-center"><img class="w-5 h-fit mr-3" src="../assets/icon-cart-white.svg" alt=""> Add to cart</span>
+                    <span
+                        class=" cursor-pointer bg-orange-500 text-white flex w-fit px-16 py-3 rounded-md font-semibold items-center"
+                        @click="this.addToCart()"
+                    >
+                        <img class="w-5 h-fit mr-3" src="../assets/icon-cart-white.svg" alt="">
+                        Add to cart
+                    </span>
                 </div>
             </div>
         </div>
@@ -42,13 +63,20 @@
 </template>
 
 <script>
+    import Header from "./Header"
+
     export default {
-        name: "Product",
+        name: "Pro:duct",
+        components: {
+            Header
+        },
         data() {
             return {
                 qtdProdutos: 0,
+                totalProdutos: 0,
                 image: "image-product-1.jpg",
-                precoUnitario: 125
+                precoUnitario: 125,
+                item: {},
             }
         },
         mounted() {
@@ -67,6 +95,26 @@
             },
             addQuantidade() {
                 this.qtdProdutos++;
+            },
+            removeQuantidade() {
+                if (this.qtdProdutos > 0) {
+                    this.qtdProdutos--;
+                }
+            },
+            addToCart () {
+                console.log(this.qtdProdutos);
+                this.totalProdutos = this.qtdProdutos;
+                this.item = {
+                    precoUnitario: 125.00,
+                    nome: "Fall limited Edition Sneakers",
+                    imagem: "../assets/image-product-1-thumbnail.jpg",
+                    precoTotal: this.precoUnitario * this.totalProdutos
+                }
+            },
+            clear() {
+                this.qtdProdutos = 0;
+                this.totalProdutos = 0;
+                this.item = {};
             }
         }
     }
