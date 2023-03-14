@@ -45,7 +45,6 @@ export default {
     created() {
         if(this.item !== null && this.item !== '') {
             this.calculaPrecoTotal();
-            console.log(this.item);
         }
     },
     methods: {

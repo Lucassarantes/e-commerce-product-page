@@ -7,13 +7,13 @@
     <section class="grid grid-cols-2 absolute top-60">
         <div class="grid mb-10">
             <div class="w-full flex justify-center items-center mb-10">
-                <img class="rounded-[0.75rem] w-7/12  cursor-pointer" :src='require(`../assets/${this.image}`)' alt="">
+                <img class="rounded-[0.75rem] w-7/12  cursor-pointer" id="imagem" :src='require(`../assets/${this.image}`)' alt="">
             </div>
             <div class="flex gap-9 justify-center">
                 <img class="w-[7rem] h-fit rounded-lg cursor-pointer imgs hover:opacity-75" src="../assets/image-product-1-thumbnail.jpg" alt="">
-                <img class="w-[7rem] h-fit rounded-lg cursor-pointer imgs hover:opacity-75" src="../assets/image-product-4-thumbnail.jpg" alt="">
                 <img class="w-[7rem] h-fit rounded-lg cursor-pointer imgs hover:opacity-75" src="../assets/image-product-2-thumbnail.jpg" alt="">
                 <img class="w-[7rem] h-fit rounded-lg cursor-pointer imgs hover:opacity-75" src="../assets/image-product-3-thumbnail.jpg" alt="">
+                <img class="w-[7rem] h-fit rounded-lg cursor-pointer imgs hover:opacity-75" src="../assets/image-product-4-thumbnail.jpg" alt="">
             </div>
         </div>
         <div class="flex mt-12">
@@ -85,11 +85,19 @@
         },
         mounted() {
             const imagens = document.querySelectorAll(".imgs");
-            imagens.forEach(imagem => {
+            const imagemDestaque = document.getElementById("imagem");
+            imagens.forEach(function (imagem, index) {
                 imagem.addEventListener("click", () => {
+                    imagens.forEach(img => {
+                        img.classList.remove("border-2");
+                        img.classList.remove("border-orange-600");
+                        img.classList.remove("opacity-75");
+                    })
                     imagem.classList.toggle("border-2");
                     imagem.classList.toggle("border-orange-600");
                     imagem.classList.toggle("opacity-75");
+                    let image = require(`../assets/image-product-${index + 1}.jpg`);
+                    imagemDestaque.setAttribute("src", image);
                 });
             });
         },
