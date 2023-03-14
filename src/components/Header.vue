@@ -40,7 +40,7 @@
             >
                 {{ this.totalItens }}
             </span>
-            <DropList v-show="this.dropDown" :item="this.item" :totalItens="this.totalItens" />
+            <DropList v-show="this.dropDown" :item="this.item" :totalItens="this.totalItens" @clear="$emit('clear')" />
             <img class="h-12" src="../assets/image-avatar.png" alt="Perfil">
         </div>
     </div>

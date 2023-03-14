@@ -20,6 +20,7 @@
                     class="cursor-pointer"
                     src="../assets/icon-delete.svg"
                     alt=""
+                    @click="$emit('clear')"
                 >
             </div>
             <button class="w-11/12 bg-orange-500 text-white rounded-lg py-3 mt-10 ml-3">checkout</button>

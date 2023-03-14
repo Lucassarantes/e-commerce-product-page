@@ -1,5 +1,9 @@
 <template>
-    <Header :totalItens="this.totalProdutos" :item="this.item" @clear="clear()"/>
+    <Header
+        :totalItens="this.totalProdutos"
+        :item="this.item"
+        v-on:clear="clear()"
+    />
     <section class="grid grid-cols-2 absolute top-60">
         <div class="grid mb-10">
             <div class="w-full flex justify-center items-center mb-10">
